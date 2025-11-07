@@ -32,7 +32,7 @@ The worker will start at `http://localhost:8787`
 ## Available Endpoints
 
 ### GET / (Root)
-Returns available routes and documentation.
+Returns available routes.
 
 ```bash
 curl http://localhost:8787/
@@ -82,39 +82,6 @@ curl http://localhost:8787/cats/breeds
     "description": "The Abyssinian is easy to care for..."
   }
 ]
-```
-
-### GET /cats/search
-Search for cats with filters.
-
-**Query Parameters:**
-- `limit` - Number of images to return (default: 10)
-- `breed_ids` - Filter by breed IDs (comma-separated)
-- `category_ids` - Filter by category IDs (e.g., boxes, hats)
-
-**Example:**
-```bash
-curl "http://localhost:8787/cats/search?limit=5&category_ids=5"
-```
-
-### POST /cats/vote
-Vote on a cat image (upvote or downvote).
-
-**Body:**
-```json
-{
-  "image_id": "abc123",
-  "value": 1
-}
-```
-
-- `value`: 1 for upvote, 0 for downvote
-
-**Example:**
-```bash
-curl -X POST http://localhost:8787/cats/vote \
-  -H "Content-Type: application/json" \
-  -d '{"image_id":"abc123","value":1}'
 ```
 
 ## Using from Your EDS Site
