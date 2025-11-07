@@ -7,44 +7,32 @@ This document contains useful resources for AEM Edge Delivery Services developme
 - https://www.aem.live/docs/dev-collab-and-good-practices
 - https://www.aem.live/developer/keeping-it-100
 
-### Content Modeling
+## Content Modeling
 
 - https://www.aem.live/blog/content-document-semantics
 - https://www.aem.live/developer/component-model-definitions
 - https://www.aem.live/developer/markup-sections-blocks
 - https://www.aem.live/docs/davidsmodel
 
-### Development Process & Tools
+## Development Process & Tools
 
 - https://www.aem.live/blog/testing-in-aem
 - https://www.aem.live/developer/ai-coding-agents
 - [Helix Website Repo](https://github.com/adobe/helix-website)
 
-### Community
+## Community
 
 - https://www.aem.live/developer/block-collection
 - https://www.aem.live/developer/block-party/
 - https://www.aem.live/community
 - https://www.aem.live/blog
 
----
-
 ## Integrations
 
-- [Integrations Overview](https://www.aem.live/docs/integrations)
 - [Integration Patterns](https://www.aem.live/developer/integrations)
-- [BTOM](https://www.aem.live/developer/byom)
-- [GitHub Actions](https://www.aem.live/developer/github-actions)
-- [Adobe Target](https://www.aem.live/developer/target-integration)
-- [Google Tag Manager](https://www.aem.live/developer/gtm-martech-integration)
-
-### Workers
-
-- [Cloudflare Workers](https://developers.cloudflare.com/workers/)
-- [Fastly Edge Compute](https://www.fastly.com/documentation/solutions/examples/javascript/)
-- [Akamain Edge Workers](https://techdocs.akamai.com/edgeworkers/docs/hello-world)
-- [AWS Lambda @Edge](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/lambda-examples.html)
+- [Getting Started with Cloudflare Workers](https://developers.cloudflare.com/workers/get-started/guide/)
 - [The Cat API](https://thecatapi.com/)
+- [The Cat API Documentation](https://developers.thecatapi.com/)
 
 ---
 
