@@ -1,6 +1,6 @@
 # Advanced Topics Hands-on Exercise
 
-This is a hands-on exercise. You will be migrating some content from https://deno.com over to Edge Delivery on DA and setting up some additional things.
+This is a hands-on exercise. You will be migrating some content from https://deno.com over to Edge Delivery on DA, doing some light coding and updating some configurations via the Admin API.
 
 ## Prerequisites
 As a pre-requisite to Masterclass, you should already have an org and a site up and running after having gone through the [Getting Started tutorial](https://www.aem.live/developer/tutorial). Lets expand on that now to:
@@ -16,7 +16,7 @@ As a pre-requisite to Masterclass, you should already have an org and a site up 
 ## Step 1: Create the Deno site in your org
 
 ```sh
-curl -X POST https://admin.hlx.page/config/{org}/sites/{site}.json \
+curl -X POST https://admin.hlx.page/config/{org}/sites/deno.json \
   -H 'content-type: application/json' \
   -H 'x-auth-token: {your-auth-token}' \
   --data '{
@@ -61,12 +61,16 @@ _TIP: Use the Import Workbench to import one as a test. Once satisfied with your
 - Create a `blog` index for the blog pages that were imported
     - Value for `include` should be `/blog/**`
 
+If you prefer curl, use the following command:
+
 ```sh
 curl -X POST https://admin.hlx.page/config/{org}/sites/{site}/content/query.yaml \
   -H 'content-type: text/yaml' \
   -H 'x-auth-token: {your-auth-token}' \
-  --data @your-index-config.yaml
+  --data @resources/index-config.yaml
 ```
+
+You can verify the index config in the index admin tool mentioned above to confirm that things are looking good and edit as necessary.
 
 ## Step 4: Create sitemaps pointing to their indices
 - Go to https://labs.aem.live/tools/sitemap-admin/index.html
@@ -74,11 +78,13 @@ curl -X POST https://admin.hlx.page/config/{org}/sites/{site}/content/query.yaml
 - Generate the sitemaps for both
 - Verify that things look correct at `/sitemap.xml` and `/blog-sitemap.xml`
 
+If you prefer to use curl, use the following command:
+
 ```sh
 curl -X POST https://admin.hlx.page/config/{org}/sites/{site}/content/sitemap.yaml \
   -H 'content-type: text/yaml' \
   -H 'x-auth-token: {your-auth-token}' \
-  --data @your-sitemap-config.yaml
+  --data @resources/sitemap-config.yaml
 ```
 
 ## Step 5: Create a repoless site

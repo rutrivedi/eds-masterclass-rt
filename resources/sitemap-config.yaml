@@ -1,0 +1,10 @@
+version: 1
+sitemaps:
+  sitemap:
+    source: /query-index.json
+    destination: /sitemap.xml
+    lastmod: YYYY-MM-DD
+  blog-sitemap:
+    source: /blog-index.json
+    destination: /blog-sitemap.xml
+    lastmod: YYYY-MM-DD
