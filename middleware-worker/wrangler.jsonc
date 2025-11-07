@@ -8,7 +8,7 @@
 	"main": "src/index.js",
 	"compatibility_date": "2025-11-06",
 	"observability": {
-		"enabled": true
+		"enabled": false
 	},
 	/**
 	 * Environment Variables
