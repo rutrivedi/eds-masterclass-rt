@@ -100,19 +100,6 @@ async function getBreeds() {
   const response = await fetch('https://your-worker.workers.dev/cats/breeds');
   return response.json();
 }
-
-// Vote on a cat
-async function voteCat(imageId, upvote = true) {
-  const response = await fetch('https://your-worker.workers.dev/cats/vote', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      image_id: imageId,
-      value: upvote ? 1 : 0
-    })
-  });
-  return response.json();
-}
 ```
 
 ## Deployment
@@ -136,7 +123,10 @@ Your worker will be available at: `https://middleware-worker.YOUR_SUBDOMAIN.work
 ## Security
 
 1. **API Key is Secret** - Never committed to git, only stored in Cloudflare
-2. **CORS Enabled** - Adjust in production to limit allowed origins (see `getCORSHeaders()` in `src/index.js`)
+2. **CORS Restricted** - Only allows requests from:
+   - `http://localhost:3000` (local development)
+   - `*--eds-masterclass--cloudadoption.aem.live` (any production branch)
+   - `*--eds-masterclass--cloudadoption.aem.page` (any preview branch)
 3. **Rate Limiting** - Consider adding rate limiting for production use
 
 ## Testing with Vitest

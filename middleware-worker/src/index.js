@@ -17,7 +17,7 @@ export default {
 
 		// Handle CORS preflight
 		if (request.method === 'OPTIONS') {
-			return handleCORS();
+			return handleCORS(request);
 		}
 
 		// Route: Get random cat images
@@ -41,7 +41,7 @@ export default {
 			}, null, 2), {
 				headers: {
 					'Content-Type': 'application/json',
-					...getCORSHeaders(),
+					...getCORSHeaders(request),
 				},
 			});
 		}
@@ -55,7 +55,7 @@ export default {
 			status: 404,
 			headers: {
 				'Content-Type': 'application/json',
-				...getCORSHeaders(),
+				...getCORSHeaders(request),
 			},
 		});
 	},
@@ -83,11 +83,11 @@ async function handleRandomCats(request, env, params) {
 			status: response.status,
 			headers: {
 				'Content-Type': 'application/json',
-				...getCORSHeaders(),
+				...getCORSHeaders(request),
 			},
 		});
 	} catch (error) {
-		return errorResponse('Failed to fetch random cats', error);
+		return errorResponse('Failed to fetch random cats', error, request);
 	}
 }
 
@@ -110,39 +110,63 @@ async function handleBreeds(request, env) {
 			status: response.status,
 			headers: {
 				'Content-Type': 'application/json',
-				...getCORSHeaders(),
+				...getCORSHeaders(request),
 			},
 		});
 	} catch (error) {
-		return errorResponse('Failed to fetch breeds', error);
+		return errorResponse('Failed to fetch breeds', error, request);
 	}
+}
+
+/**
+ * Check if an origin is allowed
+ */
+function isAllowedOrigin(origin) {
+	if (!origin) return false;
+
+	// Allow localhost:3000
+	if (origin === 'http://localhost:3000') return true;
+
+	// Allow any branch on .aem.live
+	if (origin.match(/^https:\/\/[^/]+--eds-masterclass--cloudadoption\.aem\.live$/)) return true;
+
+	// Allow any branch on .aem.page
+	if (origin.match(/^https:\/\/[^/]+--eds-masterclass--cloudadoption\.aem\.page$/)) return true;
+
+	return false;
 }
 
 /**
  * Get CORS headers for cross-origin requests
  */
-function getCORSHeaders() {
-	return {
-		'Access-Control-Allow-Origin': '*', // In production, restrict to your domain
+function getCORSHeaders(request) {
+	const origin = request.headers.get('Origin');
+	const headers = {
 		'Access-Control-Allow-Methods': 'GET, OPTIONS',
 		'Access-Control-Allow-Headers': 'Content-Type',
 	};
+
+	if (isAllowedOrigin(origin)) {
+		headers['Access-Control-Allow-Origin'] = origin;
+	}
+
+	return headers;
 }
 
 /**
  * Handle CORS preflight requests
  */
-function handleCORS() {
+function handleCORS(request) {
 	return new Response(null, {
 		status: 204,
-		headers: getCORSHeaders(),
+		headers: getCORSHeaders(request),
 	});
 }
 
 /**
  * Create an error response
  */
-function errorResponse(message, error) {
+function errorResponse(message, error, request) {
 	return new Response(JSON.stringify({
 		error: message,
 		details: error.message,
@@ -150,7 +174,7 @@ function errorResponse(message, error) {
 		status: 500,
 		headers: {
 			'Content-Type': 'application/json',
-			...getCORSHeaders(),
+			...getCORSHeaders(request),
 		},
 	});
 }
