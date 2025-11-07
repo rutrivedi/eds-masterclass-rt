@@ -1,0 +1,279 @@
+.cat-viewer {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.cat-viewer-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Controls */
+.cat-viewer-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.cat-viewer-breed-select {
+  flex: 1 1 200px;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  background-color: white;
+  cursor: pointer;
+}
+
+.cat-viewer-breed-select:hover {
+  border-color: #999;
+}
+
+.cat-viewer-breed-select:focus {
+  outline: 2px solid #0078d4;
+  outline-offset: 2px;
+}
+
+.cat-viewer-refresh-btn,
+.cat-viewer-info-btn {
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.cat-viewer-refresh-btn span,
+.cat-viewer-info-btn span {
+  font-size: 20px;
+}
+
+.cat-viewer-refresh-btn {
+  background-color: #0078d4;
+  color: white;
+}
+
+.cat-viewer-refresh-btn:hover {
+  background-color: #106ebe;
+}
+
+.cat-viewer-refresh-btn:active {
+  background-color: #005a9e;
+  transform: scale(0.98);
+}
+
+.cat-viewer-info-btn {
+  background-color: transparent;
+  color: #000;
+  border: 2px solid #333;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.cat-viewer-info-btn:disabled {
+  background-color: #e0e0e0;
+  color: #999;
+  border-color: #ccc;
+  cursor: not-allowed;
+  transition: none;
+}
+
+.cat-viewer-info-btn:hover:not(:disabled),
+.cat-viewer-info-btn:focus:not(:disabled) {
+  background-color: #1e88e5;
+  color: white;
+  border-color: #1e88e5;
+}
+
+.cat-viewer-info-btn:active:not(:disabled) {
+  background-color: #1565c0;
+  border-color: #1565c0;
+  transform: scale(0.98);
+}
+
+.cat-viewer-refresh-btn:focus {
+  outline: 2px solid #0078d4;
+  outline-offset: 2px;
+}
+
+.cat-viewer-info-btn:focus:not(:disabled) {
+  outline: 2px solid #fff;
+  outline-offset: -4px;
+}
+
+/* Image container */
+.cat-viewer-image-container {
+  position: relative;
+  width: 100%;
+  min-height: 400px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cat-viewer-loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 18px;
+  color: #666;
+}
+
+.cat-viewer-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: opacity 0.3s ease;
+  object-fit: contain;
+  max-height: 600px;
+}
+
+/* Info dialog */
+.cat-viewer-dialog {
+  border: none;
+  border-radius: 8px;
+  padding: 0;
+  max-width: 600px;
+  width: 90vw;
+  box-shadow: 0 4px 20px rgb(0 0 0 / 30%);
+}
+
+.cat-viewer-dialog::backdrop {
+  background-color: rgb(0 0 0 / 50%);
+}
+
+.cat-viewer-dialog-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background-color: transparent;
+  color: #000;
+  border: 2px solid #333;
+  border-radius: 8px;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 8px;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.cat-viewer-dialog-close:hover,
+.cat-viewer-dialog-close:focus {
+  background-color: #1e88e5;
+  color: white;
+  border-color: #1e88e5;
+}
+
+.cat-viewer-dialog-close:active {
+  background-color: #1565c0;
+  border-color: #1565c0;
+  transform: scale(0.98);
+}
+
+.cat-viewer-dialog-close:focus {
+  outline: 2px solid #fff;
+  outline-offset: -4px;
+}
+
+.cat-viewer-dialog-body {
+  padding: 20px;
+  padding-right: 70px;
+}
+
+.cat-viewer-dialog-body h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 24px;
+  color: #333;
+}
+
+.cat-viewer-dialog-body p {
+  margin: 10px 0;
+  line-height: 1.6;
+  color: #555;
+}
+
+.cat-viewer-dialog-body p:last-child {
+  margin-bottom: 0;
+}
+
+.cat-viewer-dialog-body a {
+  color: #0078d4;
+  text-decoration: none;
+}
+
+.cat-viewer-dialog-body a:hover {
+  text-decoration: underline;
+}
+
+/* Error message */
+.cat-viewer-error {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 15px 20px;
+  background-color: #d32f2f;
+  color: white;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 20%);
+  z-index: 1000;
+  animation: slide-in 0.3s ease;
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Responsive adjustments */
+@media (width >= 600px) {
+  .cat-viewer {
+    padding: 30px;
+  }
+
+  .cat-viewer-controls {
+    flex-wrap: nowrap;
+  }
+
+  .cat-viewer-breed-select {
+    flex: 1 1 auto;
+  }
+
+  .cat-viewer-image-container {
+    min-height: 500px;
+  }
+}
+
+@media (width >= 900px) {
+  .cat-viewer {
+    padding: 40px;
+  }
+
+  .cat-viewer-image-container {
+    min-height: 600px;
+  }
+}
