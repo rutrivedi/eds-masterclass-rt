@@ -59,6 +59,8 @@ Templates use standard Mustache syntax:
 
 **Important:** Replace `<ORG>`, `<SITE>`, and `<BRANCH>` with your actual values.
 
+**Note:** you can use https://labs.aem.live/tools/admin-edit/index.html to GET the /content.json of your site, add the overlay to it, and save (POST) it back to the same endpoint.
+
 ### Step 4: Configure JSON2HTML Worker
 
 Use a POST request to configure the JSON2HTML worker with your endpoint and template mappings.
